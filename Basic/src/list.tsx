@@ -9,14 +9,18 @@ interface MemberEntity {
 
 export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
-  const [search, setSearch] = React.useState("lemoncode");
+  const [search, setSearch] = React.useState(
+    localStorage.getItem('lastSearch') ? localStorage.getItem('lastSearch') : 'lemoncode'
+  );
+  const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
     handleSearch();
-  }, []);
+  }, [page]);
 
   const handleSearch = () => {
-    fetch(`https://api.github.com/orgs/${search}/members`)
+    localStorage.setItem('lastSearch', search);
+    fetch(`https://api.github.com/orgs/${search}/members?per_page=10&page=${page}`)
       .then((response) => response.json())
       .then((json) => setMembers(json));
   }
@@ -37,6 +41,10 @@ export const ListPage: React.FC = () => {
             <Link to={`/detail/${member.login}`}>{member.login}</Link>
           </>
         ))}
+      </div>
+      <div className="pagination">
+        {page > 1 ? <button onClick={() => setPage(page === 1 ? 1 : page - 1)}>Prev</button> : null} 
+        {Object.keys(members).length >= 10 ? <button onClick={() => setPage(page + 1)}>Next</button> : null}
       </div>
       <Link to="/detail">Navigate to detail page</Link>
     </>
