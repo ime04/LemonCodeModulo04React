@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Button, Input, InputLabel } from "@mui/material";
+import { FormControl } from '@mui/material';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,28 +20,27 @@ export const LoginPage: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={handleNavigation}>
+      <form className="form-login" onSubmit={handleNavigation}>
         <h2>Hello from login page</h2>
 
         <div>
-          <div>
-            <label>Username: </label>
-            <input
+          <FormControl fullWidth className="input-form" margin="normal">
+            <InputLabel>Username: </InputLabel>
+            <Input fullWidth
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-          </div>
-          <div>
-            <label>Password: </label>
-            <input
+          </FormControl>
+          <FormControl fullWidth className="input-form" margin="normal">
+            <InputLabel>Password: </InputLabel>
+            <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
+          </FormControl>
         </div>
-
-        <button type="submit">Login</button>
+        <Button variant="contained" type="submit">Login</Button>
       </form>
     </>
   );

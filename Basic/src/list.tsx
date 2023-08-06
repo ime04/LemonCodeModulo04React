@@ -1,3 +1,4 @@
+import { Button, Input, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -27,24 +28,32 @@ export const ListPage: React.FC = () => {
 
   return (
     <>
-      <h2>Hello from List page</h2>+{" "}
-      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}/>
-      <button type="button" onClick={handleSearch}>Search</button>
-      <div className="list-user-list-container">
-        <span className="list-header">Avatar</span>
-        <span className="list-header">Id</span>
-        <span className="list-header">Name</span>
-        {members.map((member) => (
-          <>
-            <img src={member.avatar_url} />
-            <span>{member.id}</span>
-            <Link to={`/detail/${member.login}`}>{member.login}</Link>
-          </>
-        ))}
+      <h2>Hello from List page</h2>
+      <div className="search">
+        <Input type="text" value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <Button className="search-button" variant="contained" type="button" onClick={handleSearch}>Search</Button>
       </div>
+      <Table className="list-user-list-container">
+        <TableHead>
+          <TableRow>
+            <TableCell className="list-header"><span >Avatar</span></TableCell>
+            <TableCell className="list-header"><span>Id</span></TableCell>
+            <TableCell className="list-header"><span>Name</span></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {members.map((member) => (
+            <TableRow>
+              <TableCell><img className="avatar-image" src={member.avatar_url} /></TableCell>
+              <TableCell><span>{member.id}</span></TableCell>
+              <TableCell><Link to={`/detail/${member.login}`}>{member.login}</Link></TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
       <div className="pagination">
-        {page > 1 ? <button onClick={() => setPage(page === 1 ? 1 : page - 1)}>Prev</button> : null} 
-        {Object.keys(members).length >= 10 ? <button onClick={() => setPage(page + 1)}>Next</button> : null}
+        {page > 1 ? <Button variant="contained" onClick={() => setPage(page === 1 ? 1 : page - 1)}>Prev</Button> : null} 
+        {Object.keys(members).length >= 10 ? <Button variant="contained" onClick={() => setPage(page + 1)}>Next</Button> : null}
       </div>
       <Link to="/detail">Navigate to detail page</Link>
     </>
