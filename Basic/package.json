@@ -7,7 +7,7 @@
     "start": "run-p -l type-check:watch start:dev",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "start:dev": "webpack-dev-server --mode development --open",
+    "start:dev": "webpack-dev-server --mode development",
     "build": "rimraf dist && webpack --mode development"
   },
   "author": "",

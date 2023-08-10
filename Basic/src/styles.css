@@ -1,10 +1,30 @@
-  .list-header {
-    border: 1px solid black;
-    background-color: skyblue;
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
 
+  * {
+    margin: 0;
+  }
+
+  html, body {
+    height: 100%;
+    background-color: rgb(173, 233, 203);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  #root {
+    height: 100%;
+  }
+  
   .avatar-image {
-    width: 80px;
+    flex: 1;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
   .form-login {
@@ -12,15 +32,71 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    align-items: center;
     background: white;
     padding: 20px;
-    margin-top: 30px;
+    border-radius: 0.3em;
   }
 
-  .search {
-    margin-bottom: 2em;
+  .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
   }
 
   .card {
     width: 300px;
+  }
+
+  .container-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .search {
+    margin-bottom: 2em;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .card {
+    max-width: 200px;
+    min-height: 200px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-content {
+    text-align: center;
+  }
+
+  .card-actions {
+    justify-content: center;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
   }
