@@ -4,10 +4,11 @@ import { Button, Card, CardActions, CardContent, CardMedia } from "@mui/material
 
 interface Props {
   members: MemberEntity[];
+  goToDetail: (login: string) => void;
 }
 
 export const ListComponent: React.FC<Props> = (props) => {
-  const { members } = props;
+  const { members, goToDetail } = props;
   return (
       <div className="card-list">
         {members.map((member) => (
@@ -17,7 +18,7 @@ export const ListComponent: React.FC<Props> = (props) => {
               UserId: {member.id}
             </CardContent>
             <CardActions className="card-actions">
-              <Button variant="contained" onClick={() => alert('clicked!')}>Detail</Button>
+              <Button variant="contained" onClick={() => goToDetail(member.login)}>Detail</Button>
             </CardActions>
           </Card>
         ))}

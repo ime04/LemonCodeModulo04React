@@ -9,14 +9,18 @@ export const SearchContainer: React.FC = () => {
     const [search, setSearch] = React.useState<string>(stringSearch);
     const doSearch = () => fetch(
         `https://api.github.com/orgs/${search}/members?per_page=10&page=${page}`)
-        .then((response) => response.json())
-        .then((json) => setMembers(json));
-    
-    //catch when no results
-    
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return Promise.reject('error 404')
+            }
+        }).then((json) => setMembers(json))
+        .catch(error => alert('Organization not found'));
+
     React.useEffect(() => {
         doSearch()
-    }, []);
+    }, [page]);
 
-    return <SearchComponent stringSearch={search} members={members} setSearch={setSearch} doSearch={doSearch}/>;
+    return <SearchComponent stringSearch={search} members={members} setSearch={setSearch} doSearch={doSearch} page={page} setPage={setPage} />;
 };
