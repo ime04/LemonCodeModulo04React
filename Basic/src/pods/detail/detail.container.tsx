@@ -18,5 +18,5 @@ export const DetailContainer: React.FC<Props> = (props) => {
       .then((json) => setMember(json));
   }, []);
 
-  return <DetailComponent member={member} />;
+  return <DetailComponent member={member}/>;
 };

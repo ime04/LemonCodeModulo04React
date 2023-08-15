@@ -85,6 +85,16 @@
     justify-content: center;
   }
 
+  .card-double {
+    max-width: 300px;
+    min-height: 300px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .card-content {
     text-align: center;
   }

@@ -8,8 +8,5 @@ interface Props {
 
 export const ListContainer: React.FC<Props> = (props) => {
   const { members } = props;
-  const goToDetail = (login: string) : void => {
-    location.href = '/detail/' + login;
-  }
-  return <ListComponent members={members} goToDetail={goToDetail}/>;
+  return <ListComponent members={members}/>;
 };

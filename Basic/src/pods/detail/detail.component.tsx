@@ -1,6 +1,7 @@
 import React from "react";
 import { MemberDetailEntity } from "./detail.vm";
-import { Button, Card, CardActions, CardContent } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface Props {
   member: MemberDetailEntity;
@@ -8,18 +9,18 @@ interface Props {
 
 export const DetailComponent: React.FC<Props> = (props) => {
   const { member } = props;
-  const gotToList = () => {
-    location.href = `/list`;
-  }
   return (
     <div className="container">
-      <div className="card">
-        <Card className="card">
+      <div className="card-double">
+        <Card key={member.id} className="card-double">
+          <CardMedia className="avatar-image" image={member.avatar_url} component='img'/>
           <CardContent className="card-content">
-            <h3>User Id: {member.id}</h3>
+            UserId: {member.id}
+            <br />
+            Username: {member.name}
           </CardContent>
           <CardActions className="card-actions">
-            <Button variant="contained" onClick={() => gotToList()}>Back</Button>
+            <Link to="/list">Back</Link>
           </CardActions>
         </Card>
       </div>
